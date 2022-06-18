@@ -34,6 +34,7 @@ export default function Layout({ children }) {
           <ul className="flex justify-end text-stone-400 mt-5 text-xl">
             {navItems.map(({ name, path }) => (
               <li
+                key={name}
                 className={
                   router.pathname == path ? activeLinkClass : linkClass
                 }
