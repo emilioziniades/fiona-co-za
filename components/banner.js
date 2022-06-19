@@ -34,12 +34,14 @@ export default function Banner({
               </div>
             )}
             <div className={`flex ${columnOrder} p-4`}>
-              <div>{mdData.offering.intro}:</div>
-              <ul className="leading-tight">
-                {mdData.offering.skills.map((skill) => (
-                  <li className="list-disc list-inside">{skill}</li>
-                ))}
-              </ul>
+              <div>
+                <p>{mdData.offering.intro}:</p>
+                <ul className="leading-tight">
+                  {mdData.offering.skills.map((skill) => (
+                    <li className="list-disc list-inside">{skill}</li>
+                  ))}
+                </ul>
+              </div>
               <div className="py-5" />
               <div>
                 {mdData.contact.map(({ name, number }) => (
