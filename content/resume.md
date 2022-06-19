@@ -1,3 +1,7 @@
+---
+test: this is frontmatter
+---
+
 # Professional Info
 
 Highly creative and multitalented Graphic Designer with extensive experience in multimedia, marketing, and print design. Exceptional collaborative and interpersonal skills; dynamic team player with well-developed written and verbal communication abilities. Highly skilled in client and vendor relations and negotiations; talented at building and maintaining “win-win” partnerships. Passionate and inventive creator of innovative marketing strategies and campaigns; accustomed to performing in deadline-driven environments with an emphasis on working within budget requirements.
