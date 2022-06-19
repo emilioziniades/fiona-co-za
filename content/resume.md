@@ -1,5 +1,22 @@
 ---
-test: this is frontmatter
+main_heading: CV
+image: /images/profile.webp
+offering:
+  intro: Available for
+  skills:
+    - Graphic Design
+    - Brand Development
+    - User Experience Design
+    - Publication Design
+    - Instructional Design
+    - Marketing and Brand Strategy
+    - Digital Marketing
+    - Content Marketing
+contact:
+  - name: Email
+    number: peakef@gmail.com
+  - name: Cell
+    number: +27 83 257 9000
 ---
 
 # Professional Info
@@ -10,7 +27,7 @@ Highly creative and multitalented Graphic Designer with extensive experience in 
 
 ## Professional Graphic Designer
 
-### Freelance - Full Page
+## Freelance - Full Page
 
 - Establish and manage a freelance design business that aims to assist companies and individuals in brand development
 - Spearhead visual identity including brand positioning, promotions and digital marketing for different companies

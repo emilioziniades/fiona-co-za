@@ -13,25 +13,34 @@ const navItems = [
 const linkClass = "ml-2 p-1 hover:bg-zinc-400 hover:text-white";
 const activeLinkClass = linkClass + " bg-zinc-500 text-white";
 
-export default function Layout({ children }) {
+export default function Layout({ children, background }) {
+  return (
+    <>
+      <Header />
+      <div className={background}>{children}</div>
+    </>
+  );
+}
+
+function Header() {
   const router = useRouter();
   return (
-    <div className="bg-stone-800">
+    <div className="bg-neutral-800">
       <Head>
         <title>{siteTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={siteDescription} />
       </Head>
-      <div className="min-w-4xl max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <header className="py-8 px-6">
           <Link href="/">
             <a>
-              <h1 className="uppercase text-6xl font-light text-right text-white tracking-wider">
+              <h1 className="uppercase text-6xl font-light text-right text-white tracking-wide">
                 {siteTitle}
               </h1>
             </a>
           </Link>
-          <ul className="flex justify-end text-stone-400 mt-5 text-xl">
+          <ul className="flex justify-end text-stone-400 mt-5 text-2xl">
             {navItems.map(({ name, path }) => (
               <li
                 key={name}
@@ -47,7 +56,6 @@ export default function Layout({ children }) {
           </ul>
         </header>
       </div>
-      <div className="bg-gray-200 h-screen">{children}</div>
     </div>
   );
 }
