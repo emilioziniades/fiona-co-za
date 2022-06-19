@@ -2,31 +2,33 @@ import Layout from "../components/layout";
 import Banner from "../components/banner";
 import { getMarkdownData } from "../utils/markdown";
 
-const cvFile = "resume";
 const proseStyle =
   "prose-lg prose-h1:underline prose-h1:text-4xl prose-h2:m-1 prose-h2:text-2xl prose-h2:font-semibold prose-li:list-disc ";
 
 export async function getStaticProps() {
-  const mdData = await getMarkdownData(cvFile);
+  const infoData = await getMarkdownData("info");
+  const mdData = await getMarkdownData("/pages/cv");
+  const data = { ...infoData, ...mdData };
   return {
-    props: { mdData },
+    props: { data },
   };
 }
-export default function CVPage({ mdData }) {
+export default function CVPage({ data }) {
   return (
     <Layout backgroundColour="bg-gray-200">
       <div className="pt-10" />
       <Banner
-        mdData={mdData}
+        data={data}
         background="bg-stone-800"
         textColour="text-gray-200"
         contactFirst
+        noBlurb
       />
       <div className="pt-10" />
       <article
         className={`flex justify-center max-w-4xl mx-auto ${proseStyle}`}
       >
-        <div dangerouslySetInnerHTML={{ __html: mdData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
       </article>
     </Layout>
   );

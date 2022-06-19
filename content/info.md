@@ -1,5 +1,4 @@
 ---
-main_heading: HELLO!
 image: /images/profile.webp
 blurb: |
   Creative and passionate designer, marketer, and brand enabler.  

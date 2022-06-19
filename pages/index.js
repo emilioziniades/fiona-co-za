@@ -3,24 +3,25 @@ import Banner from "../components/banner";
 
 import { getMarkdownData } from "../utils/markdown";
 
-const bannerFile = "index";
 const actionButtons = [
   { name: "my cv", path: "/cv" },
   { name: "design portfolio", path: "/projects" },
 ];
 
 export async function getStaticProps() {
-  const mdData = await getMarkdownData(bannerFile);
+  const infoData = await getMarkdownData("info");
+  const mdData = await getMarkdownData("/pages/index");
+  const data = { ...mdData, ...infoData };
   return {
-    props: { mdData },
+    props: { data },
   };
 }
-export default function HomePage({ mdData }) {
+export default function HomePage({ data }) {
   return (
     <Layout background="bg-stone-700">
       <div className="pt-10" />
       <Banner
-        mdData={mdData}
+        data={data}
         buttons={actionButtons}
         background="bg-gray-200"
         textColour="text-gray-800"

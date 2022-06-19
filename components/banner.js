@@ -6,11 +6,12 @@ const buttonClasses =
   "bg-stone-500 hover:bg-stone-700 text-white font-thin py-2 px-6 mx-4 rounded uppercase";
 
 export default function Banner({
-  mdData,
+  data,
   buttons,
   background,
   textColour,
   contactFirst,
+  noBlurb,
 }) {
   const columnOrder = contactFirst ? "flex-col-reverse" : "flex-col";
   return (
@@ -20,7 +21,7 @@ export default function Banner({
       <div className="flex ">
         <div className="p-4 basis-2/5">
           <Image
-            src={mdData.image}
+            src={data.image}
             alt="Fiona Peake headshot"
             width={imgSize}
             height={imgSize}
@@ -28,21 +29,19 @@ export default function Banner({
         </div>
         <div className="basis-3/5">
           <div className="">
-            <h1 className="text-5xl uppercase font-bold p-4">
-              {mdData.main_heading}
-            </h1>
+            <h1 className="text-5xl uppercase font-bold p-4">{data.heading}</h1>
           </div>
           <div className="flex">
-            {mdData.blurb && (
+            {!noBlurb && (
               <div className="text-lg whitespace-pre-wrap basis-1/2 p-4">
-                {mdData.blurb}
+                {data.blurb}
               </div>
             )}
             <div className={`flex ${columnOrder} p-4`}>
               <div>
-                <p>{mdData.offering.intro}:</p>
+                <p>{data.offering.intro}:</p>
                 <ul className="leading-tight">
-                  {mdData.offering.skills.map((skill) => (
+                  {data.offering.skills.map((skill) => (
                     <li className="list-disc list-inside" key={skill}>
                       {skill}
                     </li>
@@ -51,7 +50,7 @@ export default function Banner({
               </div>
               <div className="py-5" />
               <div>
-                {mdData.contact.map(({ name, number }) => (
+                {data.contact.map(({ name, number }) => (
                   <p key={name}>
                     <b>
                       {name} : {number}
