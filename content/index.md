@@ -17,8 +17,8 @@ offering:
     - Digital Marketing
     - Content Marketing
 contact:
-  - name: Email
-    number: peakef@gmail.com
   - name: Cell
     number: +27 83 257 9000
+  - name: Email
+    number: peakef@gmail.com
 ---

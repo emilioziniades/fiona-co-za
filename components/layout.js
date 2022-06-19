@@ -17,7 +17,7 @@ export default function Layout({ children, background }) {
   return (
     <>
       <Header />
-      <div className={background}>{children}</div>
+      <div className={`p-5 ${background}`}>{children}</div>
     </>
   );
 }
