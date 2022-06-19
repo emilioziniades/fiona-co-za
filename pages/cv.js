@@ -15,7 +15,9 @@ export default function CVPage({ mdData }) {
   return (
     <Layout>
       <Welcome path="/cv" />
-      <div dangerouslySetInnerHTML={{ __html: mdData.contentHtml }} />
+      <article className="flex justify-center max-w-4xl prose-lg prose-li:list-disc mx-auto">
+        <div dangerouslySetInnerHTML={{ __html: mdData.contentHtml }} />
+      </article>
     </Layout>
   );
 }
