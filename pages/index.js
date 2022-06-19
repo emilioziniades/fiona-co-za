@@ -16,10 +16,9 @@ export async function getStaticProps() {
   };
 }
 export default function HomePage({ mdData }) {
-  console.log(mdData.blurb);
   return (
     <Layout background="bg-stone-700">
-      <div className="pt-10"></div>
+      <div className="pt-10" />
       <Banner
         mdData={mdData}
         buttons={actionButtons}

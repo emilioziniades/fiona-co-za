@@ -13,17 +13,16 @@ export async function getStaticProps() {
   };
 }
 export default function CVPage({ mdData }) {
-  console.log(mdData);
   return (
     <Layout backgroundColour="bg-gray-200">
-      <div className="pt-10"></div>
+      <div className="pt-10" />
       <Banner
         mdData={mdData}
         background="bg-stone-800"
         textColour="text-gray-200"
         contactFirst
       />
-      <div className="pt-10"></div>
+      <div className="pt-10" />
       <article
         className={`flex justify-center max-w-4xl mx-auto ${proseStyle}`}
       >

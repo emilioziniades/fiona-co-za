@@ -19,7 +19,12 @@ export default function Banner({
     >
       <div className="flex ">
         <div className="p-4 basis-2/5">
-          <Image src={mdData.image} width={imgSize} height={imgSize} />
+          <Image
+            src={mdData.image}
+            alt="Fiona Peake headshot"
+            width={imgSize}
+            height={imgSize}
+          />
         </div>
         <div className="basis-3/5">
           <div className="">
@@ -38,14 +43,16 @@ export default function Banner({
                 <p>{mdData.offering.intro}:</p>
                 <ul className="leading-tight">
                   {mdData.offering.skills.map((skill) => (
-                    <li className="list-disc list-inside">{skill}</li>
+                    <li className="list-disc list-inside" key={skill}>
+                      {skill}
+                    </li>
                   ))}
                 </ul>
               </div>
               <div className="py-5" />
               <div>
                 {mdData.contact.map(({ name, number }) => (
-                  <p>
+                  <p key={name}>
                     <b>
                       {name} : {number}
                     </b>
@@ -59,7 +66,7 @@ export default function Banner({
       {buttons && (
         <div className="flex justify-end p-4">
           {buttons.map(({ name, path }) => (
-            <Link href={path}>
+            <Link href={path} key={name}>
               <button className={buttonClasses}>{name}</button>
             </Link>
           ))}
