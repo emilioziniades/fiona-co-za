@@ -23,10 +23,10 @@ export default function Layout({ children }) {
         <meta name="description" content={siteDescription} />
       </Head>
       <div className="min-w-4xl max-w-4xl mx-auto">
-        <header className="py-8">
+        <header className="py-8 px-6">
           <Link href="/">
             <a>
-              <h1 className="uppercase text-6xl font-light text-right text-white tracking-wide">
+              <h1 className="uppercase text-6xl font-light text-right text-white tracking-wider">
                 {siteTitle}
               </h1>
             </a>
