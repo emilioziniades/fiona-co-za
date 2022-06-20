@@ -29,7 +29,9 @@ export default function ContactPage({ data }) {
               className="flex-col"
               data-netlify="true"
               netlify-honeypot="bot-field"
+              action="/"
             >
+              <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="bot-field" />
               <FormInput type="text" name="name" placeholder="Name" required />
               <FormInput
