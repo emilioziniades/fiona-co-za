@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const siteTitle = "Fiona Peake";
-const siteDescription = "Designer, marketer, brand enabler";
 const navItems = [
   { name: "home", path: "/" },
   { name: "design", path: "/projects" },
@@ -32,7 +31,6 @@ function Header() {
       <Head>
         <title>{siteTitle}</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={siteDescription} />
       </Head>
       <div className="max-w-4xl mx-auto">
         <header className="py-8 px-6">
