@@ -10,7 +10,7 @@ const actionButtons = [
 ];
 
 export async function getStaticProps() {
-  const infoData = await getMarkdownData("info");
+  const infoData = await getMarkdownData("info/info");
   const mdData = await getMarkdownData("/pages/index");
   const data = { ...mdData, ...infoData };
   return {
