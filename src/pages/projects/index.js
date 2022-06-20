@@ -12,18 +12,20 @@ export async function getStaticProps() {
   };
 }
 
+const imgSize = 500; // big enough to fill container
+
 export default function ProjectsPage({ allProjectsData }) {
   return (
     <Layout>
-      <div className="flex ">
+      <div className="grid grid-cols-3 justify-items-center">
         {allProjectsData.map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`}>
             <a>
-              <div className="basis-1/3 m-1 relative ">
+              <div className="p-1 relative">
                 <Image
                   src={project.image}
-                  height={300}
-                  width={300}
+                  height={imgSize}
+                  width={imgSize}
                   alt={project.title}
                 />
                 <div className="transition-all hover:bg-stone-600 h-full w-full opacity-50 absolute top-0 left-0" />
