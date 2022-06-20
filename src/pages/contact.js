@@ -22,7 +22,7 @@ export default function ContactPage({ data }) {
             <ContactDetails contact={data.contact} />
           </div>
           <div className="basis-2/3">
-            <div className="pb-4">{data.message}</div>
+            <div className="pb-4">{data.contact_message}</div>
             <form
               name="contact"
               method="POST"

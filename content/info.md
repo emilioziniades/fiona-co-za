@@ -5,6 +5,12 @@ blurb: |
   Creative and passionate designer, marketer, and brand enabler.  
 
   Inspired to create thoughtful strategic narratives and designs that deliver significant and measurable results.
+contact_message: "Looking forward to answering your email."
+contact:
+  - name: Cell
+    number: +27 83 257 9000
+  - name: Email
+    number: peakef@gmail.com
 offering:
   intro: Available for
   skills:
@@ -16,9 +22,4 @@ offering:
     - Marketing and Brand Strategy
     - Digital Marketing
     - Content Marketing
-contact:
-  - name: Cell
-    number: +27 83 257 9000
-  - name: Email
-    number: peakef@gmail.com
 ---
