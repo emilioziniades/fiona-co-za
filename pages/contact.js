@@ -57,14 +57,20 @@ export default function ContactPage({ data }) {
 
 function FormInput({ type, name, placeholder, textArea, required }) {
   const pStyles = "p-1";
-  const styles = "bg-yellow-50 w-full ";
+  const inputStyles = [
+    "bg-yellow-50",
+    "w-full",
+    "border-none",
+    "focus:ring-transparent",
+  ].join(" ");
+
   return (
     <p className={pStyles}>
       {textArea ? (
         <textarea
           name={name}
           placeholder={placeholder}
-          className={styles + "resize-none"}
+          className={inputStyles + " resize-none"}
           rows="5"
         />
       ) : (
@@ -72,7 +78,7 @@ function FormInput({ type, name, placeholder, textArea, required }) {
           type={type}
           name={name}
           placeholder={required ? placeholder + " *" : placeholder}
-          className={styles}
+          className={inputStyles}
           required={required}
         />
       )}
