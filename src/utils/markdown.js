@@ -70,13 +70,29 @@ export function getSortedProjectsData() {
     };
   });
   // Sort posts by specified order (ascending)
-  return allProjectsData.sort(({ order: a }, { order: b }) => {
-    if (a < b) {
-      return -1;
-    } else if (a > b) {
-      return 1;
-    } else {
-      return 0;
+  const sortedProjectsData = allProjectsData.sort(
+    ({ order: a }, { order: b }) => {
+      if (a < b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
     }
-  });
+  );
+
+  // categorize data into object
+  // {
+  // design: [{},{}, ... ]
+  // }
+  let categorized = {};
+  for (let project of sortedProjectsData) {
+    if (project.category in categorized) {
+      categorized[project.category].push(project);
+    } else {
+      categorized[project.category] = [project];
+    }
+  }
+  return categorized;
 }
