@@ -5,8 +5,8 @@ publish_mode: editorial_workflow
 media_folder: public/images
 public_folder: /images
 collections:
-  - name: project
-    label: Project
+  - name: projects
+    label: Projects
     folder: content/projects
     create: true
     slug: "{{slug}}"
@@ -14,27 +14,29 @@ collections:
       - label: Title
         name: title
         widget: string
-        default: My Project Title
       - label: Image
         name: image
         widget: image
         allow_multiple: false
+        choose_url: false
       - label: Category
         name: category
         widget: string
       - label: Link
         name: link
         widget: string
-        default: https://www.linktoproject.com
         pattern: ['https:\/\/.*', "Link must start with https://"]
+        hint: Link must start with 'https://'.
       - label: Link Name
         name: link_name
         widget: string
-        default: Name of Link
+        hint: If supplied, link appears as [Link Name](https://www.example.com), otherwise, it appears as [https://example.com](https://example.com).
+        required: false
       - label: Order
         name: order
         widget: number
         default: 0
+        hint: Projects with smaller order number appear first within that category.
       - label: Description
         name: body
         widget: markdown
@@ -48,7 +50,7 @@ collections:
           - label: Heading
             name: heading
             widget: string
-            hint: The other information displayed on the home page can be edited in the Site Information document
+            hint: Other information displayed on home page can be edited in the Website Information document in the General Information collection.
       - label: CV Page
         name: cv
         file: content/pages/cv.md
@@ -56,7 +58,7 @@ collections:
           - label: Heading
             name: heading
             widget: string
-          - label: Content
+          - label: CV
             name: body
             widget: markdown
       - label: Contact Page
@@ -68,27 +70,30 @@ collections:
             widget: string
           - label: Contact Message
             name: contact_message
+            hint: Appears just before contact form.
             widget: text
   - name: information
     label: General Information
     files:
-      - label: Site Information
-      - name: site_information
+      - label: Website Information
+        name: website_information
         file: contents/info.md
         fields:
           - label: Name
             name: name
             widget: string
-          - label: Image
+          - label: Hero Image
             name: image
             widget: image
             allow_multiple: false
+            choose_url: false
           - label: Blurb
             name: blurb
             widget: text
           - name: offering
             label: Offering
             widget: object
+            hint: Appears on both home page and CV page.
             fields:
               - label: Offering Introduction
                 name: intro
@@ -99,12 +104,13 @@ collections:
                 allow_add: true
                 fields:
                   - label: Skill Item
-                  - name: skill_item
-                  - widget: string
+                    name: skill_item
+                    widget: string
           - name: contact
             label: Contact Details
             widget: list
             allow_add: true
+            hint: Appears on both home page and CV page.
             fields:
               - label: Contact Type
                 name: name
