@@ -17,9 +17,9 @@ export default function ProjectsPage({ allProjectsData }) {
     <Layout>
       <div className="flex ">
         {allProjectsData.map((project) => (
-          <Link href={`/projects/${project.id}`}>
+          <Link key={project.id} href={`/projects/${project.id}`}>
             <a>
-              <div className="basis-1/3 m-1 relative " key={project.id}>
+              <div className="basis-1/3 m-1 relative ">
                 <Image
                   src={project.image}
                   height={300}
