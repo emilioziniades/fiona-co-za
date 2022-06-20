@@ -10,7 +10,7 @@ const navItems = [
   { name: "cv", path: "/cv" },
   { name: "contact", path: "/contact" },
 ];
-const linkClass = "ml-2 p-1 hover:bg-zinc-400 hover:text-white";
+const linkClass = "ml-2 p-1 hover:bg-zinc-400 hover:text-white transition-all";
 const activeLinkClass = linkClass + " bg-zinc-500 text-white";
 
 export default function Layout({ children, background }) {

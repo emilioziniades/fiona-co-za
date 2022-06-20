@@ -13,6 +13,7 @@ export const buttonClasses = [
   "mx-4",
   "rounded",
   "uppercase",
+  "transition-all",
 ].join(" ");
 
 export default function Banner({
@@ -66,7 +67,7 @@ export default function Banner({
         <div className="flex justify-end p-4">
           {buttons.map(({ name, path }) => (
             <Link href={path} key={name}>
-              <button className={buttonClasses}>{name}</button>
+              <a className={buttonClasses}>{name}</a>
             </Link>
           ))}
         </div>
