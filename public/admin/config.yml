@@ -10,54 +10,78 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {
-          label: "Title",
-          name: "title",
-          widget: "string",
-          default: "My Project Title",
-        }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Category", name: "category", widget: "string" }
-      - {
-          label: "Link",
-          name: "link",
-          widget: "string",
-          default: "www.linktoproject.com",
-        }
-      - {
-          label: "Link Name",
-          name: "link_name",
-          widget: "string",
-          default: "Name of Link",
-        }
-      - { label: "Order", name: "order", widget: "number", default: "0" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        default: "My Project Title"
+      - label: "Image"
+        name: "image"
+        widget: "image"
+      - label: "Category"
+        name: "category"
+        widget: "string"
+      - label: "Link"
+        name: "link"
+        widget: "string"
+        default: "www.linktoproject.com"
+      - label: "Link Name"
+        name: "link_name"
+        widget: "string"
+        default: "Name of Link"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+        default: "0"
+      - label: "Description"
+        name: "body"
+        widget: "markdown"
   - name: "pages"
     label: "Pages"
     folder: "content/pages"
     create: false
     fields:
-      - { label: "Heading", name: "heading", widget: "string" }
-      - { label: "Content", name: "body", widget: "markdown" }
+      - label: "Heading"
+        name: "heading"
+        widget: "string"
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
   - name: "info"
     label: "Site Information"
     folder: "content/info"
     create: false
     fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Image", name: "image", widget: "string" }
-      - { label: "Blurb", name: "blurb", widget: "text" }
-      - { label: "Contact Message", name: "contact_message", widget: "text" }
+      - label: "Name"
+        name: "name"
+        widget: "string"
+      - label: "Image"
+        name: "image"
+        widget: "string"
+      - label: "Blurb"
+        name: "blurb"
+        widget: "text"
+      - label: "Contact Message"
+        name: "contact_message"
+        widget: "text"
       - name: "offering"
         label: "Offering"
         widget: "object"
         fields:
-          - { label: "Offering Introduction", name: "intro", widget: "string" }
-          - { label: "Skills", name: "skills", widget: "list", allow_add: true }
+          - label: "Offering Introduction"
+            name: "intro"
+            widget: "string"
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            allow_add: true
       - name: "contact"
         label: "Contact Details"
         widget: "list"
         allow_add: true
         fields:
-          - { label: "Contact Type", name: "name", widget: "string" }
-          - { label: "Contact Detail", name: "number", widget: "string" }
+          - label: "Contact Type"
+            name: "name"
+            widget: "string"
+          - label: "Contact Detail"
+            name: "number"
+            widget: "string"
