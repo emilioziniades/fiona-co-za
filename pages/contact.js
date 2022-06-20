@@ -12,7 +12,6 @@ export async function getStaticProps() {
 }
 
 export default function ContactPage({ data }) {
-  console.log(data);
   return (
     <Layout>
       <div className="mx-auto max-w-4xl p-4 text-gray-700">

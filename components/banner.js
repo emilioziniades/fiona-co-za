@@ -65,7 +65,9 @@ export default function Banner({
       {buttons && (
         <div className="flex justify-end p-4">
           {buttons.map(({ name, path }) => (
-            <Button name={name} path={path} />
+            <Link href={path} key={name}>
+              <button className={buttonClasses}>{name}</button>
+            </Link>
           ))}
         </div>
       )}
@@ -84,13 +86,5 @@ export function ContactDetails({ contact }) {
         </p>
       ))}
     </div>
-  );
-}
-
-export function Button({ name, path }) {
-  return (
-    <Link href={path} key={name}>
-      <button className={buttonClasses}>{name}</button>
-    </Link>
   );
 }
