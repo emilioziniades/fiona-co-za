@@ -17,7 +17,10 @@ export default function Layout({ children, background }) {
   return (
     <>
       <Header />
-      <div className={`p-5 ${background}`}>{children}</div>
+      <div className={`p-5 min-h-screen ${background}`}>
+        <div className="pt-10" />
+        <div className="max-w-4xl mx-auto">{children}</div>
+      </div>
     </>
   );
 }

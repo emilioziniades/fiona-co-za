@@ -2,8 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 
 const imgSize = 500;
-const buttonClasses =
-  "bg-stone-500 hover:bg-stone-700 text-white font-thin py-2 px-6 mx-4 rounded uppercase";
+
+export const buttonClasses = [
+  "bg-stone-500",
+  "hover:bg-stone-700",
+  "text-white",
+  "font-thin",
+  "py-2",
+  "px-6",
+  "mx-4",
+  "rounded",
+  "uppercase",
+].join(" ");
 
 export default function Banner({
   data,
@@ -15,9 +25,7 @@ export default function Banner({
 }) {
   const columnOrder = contactFirst ? "flex-col-reverse" : "flex-col";
   return (
-    <div
-      className={`rounded mx-auto max-w-4xl p-4 m-5 ${background} ${textColour}`}
-    >
+    <div className={`rounded p-4 ${background} ${textColour}`}>
       <div className="flex ">
         <div className="p-4 basis-2/5">
           <Image
@@ -49,15 +57,7 @@ export default function Banner({
                 </ul>
               </div>
               <div className="py-5" />
-              <div>
-                {data.contact.map(({ name, number }) => (
-                  <p key={name}>
-                    <b>
-                      {name} : {number}
-                    </b>
-                  </p>
-                ))}
-              </div>
+              <ContactDetails contact={data.contact} />
             </div>
           </div>
         </div>
@@ -65,12 +65,32 @@ export default function Banner({
       {buttons && (
         <div className="flex justify-end p-4">
           {buttons.map(({ name, path }) => (
-            <Link href={path} key={name}>
-              <button className={buttonClasses}>{name}</button>
-            </Link>
+            <Button name={name} path={path} />
           ))}
         </div>
       )}
     </div>
+  );
+}
+
+export function ContactDetails({ contact }) {
+  return (
+    <div>
+      {contact.map(({ name, number }) => (
+        <p key={name}>
+          <b>
+            {name} : {number}
+          </b>
+        </p>
+      ))}
+    </div>
+  );
+}
+
+export function Button({ name, path }) {
+  return (
+    <Link href={path} key={name}>
+      <button className={buttonClasses}>{name}</button>
+    </Link>
   );
 }

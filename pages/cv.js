@@ -2,8 +2,15 @@ import Layout from "../components/layout";
 import Banner from "../components/banner";
 import { getMarkdownData } from "../utils/markdown";
 
-const proseStyle =
-  "prose-lg prose-h1:underline prose-h1:text-4xl prose-h2:m-1 prose-h2:text-2xl prose-h2:font-semibold prose-li:list-disc ";
+const proseStyle = [
+  "prose-lg",
+  "prose-h1:underline",
+  "prose-h1:text-4xl",
+  "prose-h2:m-1",
+  "prose-h2:text-2xl",
+  "prose-h2:font-semibold",
+  "prose-li:list-disc",
+].join(" ");
 
 export async function getStaticProps() {
   const infoData = await getMarkdownData("info");
@@ -16,7 +23,6 @@ export async function getStaticProps() {
 export default function CVPage({ data }) {
   return (
     <Layout backgroundColour="bg-gray-200">
-      <div className="pt-10" />
       <Banner
         data={data}
         background="bg-stone-800"
@@ -25,9 +31,7 @@ export default function CVPage({ data }) {
         noBlurb
       />
       <div className="pt-10" />
-      <article
-        className={`flex justify-center max-w-4xl mx-auto ${proseStyle}`}
-      >
+      <article className={proseStyle}>
         <div dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
       </article>
     </Layout>

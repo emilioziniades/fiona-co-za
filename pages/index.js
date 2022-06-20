@@ -19,7 +19,6 @@ export async function getStaticProps() {
 export default function HomePage({ data }) {
   return (
     <Layout background="bg-stone-700">
-      <div className="pt-10" />
       <Banner
         data={data}
         buttons={actionButtons}
