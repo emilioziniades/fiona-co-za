@@ -1,3 +1,4 @@
+import Script from "next/script";
 import Layout from "../components/layout";
 import Banner from "../components/banner";
 
@@ -19,6 +20,7 @@ export async function getStaticProps() {
 export default function HomePage({ data }) {
   return (
     <Layout background="bg-stone-700">
+      <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
       <Banner
         data={data}
         buttons={actionButtons}
