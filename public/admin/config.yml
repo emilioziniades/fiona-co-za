@@ -2,86 +2,113 @@ backend:
   name: git-gateway
   branch: main
 publish_mode: editorial_workflow
-media_folder: "public/images"
+media_folder: public/images
+public_folder: /images
 collections:
-  - name: "project"
-    label: "Project"
-    folder: "content/projects"
+  - name: project
+    label: Project
+    folder: content/projects
     create: true
     slug: "{{slug}}"
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-        default: "My Project Title"
-      - label: "Image"
-        name: "image"
-        widget: "image"
-      - label: "Category"
-        name: "category"
-        widget: "string"
-      - label: "Link"
-        name: "link"
-        widget: "string"
-        default: "www.linktoproject.com"
-      - label: "Link Name"
-        name: "link_name"
-        widget: "string"
-        default: "Name of Link"
-      - label: "Order"
-        name: "order"
-        widget: "number"
-        default: "0"
-      - label: "Description"
-        name: "body"
-        widget: "markdown"
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
-    create: false
-    fields:
-      - label: "Heading"
-        name: "heading"
-        widget: "string"
-      - label: "Content"
-        name: "body"
-        widget: "markdown"
-  - name: "info"
-    label: "Site Information"
-    folder: "content/info"
-    create: false
-    fields:
-      - label: "Name"
-        name: "name"
-        widget: "string"
-      - label: "Image"
-        name: "image"
-        widget: "string"
-      - label: "Blurb"
-        name: "blurb"
-        widget: "text"
-      - label: "Contact Message"
-        name: "contact_message"
-        widget: "text"
-      - name: "offering"
-        label: "Offering"
-        widget: "object"
+      - label: Title
+        name: title
+        widget: string
+        default: My Project Title
+      - label: Image
+        name: image
+        widget: image
+        allow_multiple: false
+      - label: Category
+        name: category
+        widget: string
+      - label: Link
+        name: link
+        widget: string
+        default: https://www.linktoproject.com
+        pattern: ['https:\/\/.*', "Link must start with https://"]
+      - label: Link Name
+        name: link_name
+        widget: string
+        default: Name of Link
+      - label: Order
+        name: order
+        widget: number
+        default: 0
+      - label: Description
+        name: body
+        widget: markdown
+  - name: pages
+    label: Pages
+    files:
+      - label: Home Page
+        name: index
+        file: content/pages/index.md
         fields:
-          - label: "Offering Introduction"
-            name: "intro"
-            widget: "string"
-          - label: "Skills"
-            name: "skills"
-            widget: "list"
+          - label: Heading
+            name: heading
+            widget: string
+            hint: The other information displayed on the home page can be edited in the Site Information document
+      - label: CV Page
+        name: cv
+        file: content/pages/cv.md
+        fields:
+          - label: Heading
+            name: heading
+            widget: string
+          - label: Content
+            name: body
+            widget: markdown
+      - label: Contact Page
+        name: contact
+        file: content/pages/contact.md
+        fields:
+          - label: Heading
+            name: heading
+            widget: string
+          - label: Contact Message
+            name: contact_message
+            widget: text
+  - name: information
+    label: General Information
+    files:
+      - label: Site Information
+      - name: site_information
+        file: contents/info.md
+        fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Image
+            name: image
+            widget: image
+            allow_multiple: false
+          - label: Blurb
+            name: blurb
+            widget: text
+          - name: offering
+            label: Offering
+            widget: object
+            fields:
+              - label: Offering Introduction
+                name: intro
+                widget: string
+              - label: Skills
+                name: skills
+                widget: list
+                allow_add: true
+                fields:
+                  - label: Skill Item
+                  - name: skill_item
+                  - widget: string
+          - name: contact
+            label: Contact Details
+            widget: list
             allow_add: true
-      - name: "contact"
-        label: "Contact Details"
-        widget: "list"
-        allow_add: true
-        fields:
-          - label: "Contact Type"
-            name: "name"
-            widget: "string"
-          - label: "Contact Detail"
-            name: "number"
-            widget: "string"
+            fields:
+              - label: Contact Type
+                name: name
+                widget: string
+              - label: Contact Detail
+                name: number
+                widget: string
