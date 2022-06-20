@@ -1,12 +1,12 @@
 backend:
-  name: git-gateway
+  name: test-repo
   branch: main
 publish_mode: editorial_workflow
 media_folder: public/images
 public_folder: /images
 collections:
-  - name: projects
-    label: Projects
+  - label: Projects
+    name: projects
     folder: content/projects
     create: true
     slug: "{{slug}}"
@@ -40,8 +40,8 @@ collections:
       - label: Description
         name: body
         widget: markdown
-  - name: pages
-    label: Pages
+  - label: Pages
+    name: pages
     files:
       - label: Home Page
         name: index
@@ -50,7 +50,42 @@ collections:
           - label: Heading
             name: heading
             widget: string
-            hint: Other information displayed on home page can be edited in the Website Information document in the General Information collection.
+          - label: Hero Image
+            name: image
+            widget: image
+            allow_multiple: false
+            choose_url: false
+          - label: Blurb
+            name: blurb
+            widget: text
+          - label: Contact Details
+            name: contact
+            widget: list
+            allow_add: true
+            hint: Also appears on CV page.
+            fields:
+              - label: Contact Type
+                name: name
+                widget: string
+              - label: Contact Detail
+                name: number
+                widget: string
+          - label: Offering
+            name: offering
+            widget: object
+            hint: Also appears on CV page.
+            fields:
+              - label: Offering Introduction
+                name: intro
+                widget: string
+              - label: Skills
+                name: skills
+                widget: list
+                allow_add: true
+                fields:
+                  - label: Skill Item
+                    name: skill_item
+                    widget: string
       - label: CV Page
         name: cv
         file: content/pages/cv.md
@@ -72,49 +107,3 @@ collections:
             name: contact_message
             hint: Appears just before contact form.
             widget: text
-  - name: information
-    label: General Information
-    files:
-      - label: Website Information
-        name: website_information
-        file: contents/info.md
-        fields:
-          - label: Name
-            name: name
-            widget: string
-          - label: Hero Image
-            name: image
-            widget: image
-            allow_multiple: false
-            choose_url: false
-          - label: Blurb
-            name: blurb
-            widget: text
-          - name: offering
-            label: Offering
-            widget: object
-            hint: Appears on both home page and CV page.
-            fields:
-              - label: Offering Introduction
-                name: intro
-                widget: string
-              - label: Skills
-                name: skills
-                widget: list
-                allow_add: true
-                fields:
-                  - label: Skill Item
-                    name: skill_item
-                    widget: string
-          - name: contact
-            label: Contact Details
-            widget: list
-            allow_add: true
-            hint: Appears on both home page and CV page.
-            fields:
-              - label: Contact Type
-                name: name
-                widget: string
-              - label: Contact Detail
-                name: number
-                widget: string
