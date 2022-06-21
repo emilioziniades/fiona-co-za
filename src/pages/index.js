@@ -10,13 +10,14 @@ const actionButtons = [
 ];
 
 export async function getStaticProps() {
-  const mdData = await getMarkdownData("/pages/index");
+  const mdData = await getMarkdownData("index", "pages");
   const data = { ...mdData };
   return {
     props: { data },
   };
 }
 export default function HomePage({ data }) {
+  console.log(data);
   return (
     <Layout background="bg-stone-700">
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>

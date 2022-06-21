@@ -34,6 +34,8 @@ export default function Banner({
             alt="Fiona Peake headshot"
             width={imgSize}
             height={imgSize}
+            placeholder="blur"
+            blurDataURL={data.imagePlaceholder}
           />
         </div>
         <div className="basis-3/5">

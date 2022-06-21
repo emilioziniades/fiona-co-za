@@ -13,8 +13,8 @@ const proseStyle = [
 ].join(" ");
 
 export async function getStaticProps() {
-  const infoData = await getMarkdownData("/pages/index");
-  const mdData = await getMarkdownData("/pages/cv");
+  const infoData = await getMarkdownData("index", "pages");
+  const mdData = await getMarkdownData("cv", "pages");
   const data = { ...infoData, ...mdData };
   return {
     props: { data },

@@ -3,13 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { getPlaiceholder } from "plaiceholder";
 
 const contentDirectory = path.join(process.cwd(), "content");
 const projectsDirectory = path.join(contentDirectory, "projects");
 
-export async function getMarkdownData(id) {
+export async function getMarkdownData(id, filePath) {
   // read file contents
-  const fullPath = path.join(contentDirectory, `${id}.md`);
+  const fullPath = path.join(contentDirectory, filePath, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // process frontmatter
@@ -21,20 +22,21 @@ export async function getMarkdownData(id) {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  return { id, contentHtml, ...matterResult.data };
+  const data = { id, contentHtml, ...matterResult.data };
+
+  if (!("image" in matterResult.data)) {
+    return data;
+  }
+
+  // get base64 encoding of image, if image field in frontmatter
+  const imagePlaceholder = await getPlaiceholder(matterResult.data.image).then(
+    ({ base64 }) => base64
+  );
+  return { ...data, imagePlaceholder };
 }
 
 export function getAllProjectsIds() {
   const fileNames = fs.readdirSync(projectsDirectory);
-
-  // Returns an array that looks like this:
-  // [
-  //   {
-  //     params: {
-  //       id: 'ssg-ssr'
-  //     }
-  //   },
-  // ]
   return fileNames.map((fileName) => {
     return {
       params: {
@@ -44,26 +46,17 @@ export function getAllProjectsIds() {
   });
 }
 
-export function getSortedProjectsData() {
-  // Get file names under /posts
-  const fileNames = fs.readdirSync(projectsDirectory);
-  const allProjectsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, "");
+export async function getSortedProjectsData() {
+  // Get file names under /projects
+  const projectIds = getAllProjectsIds();
 
-    // Read markdown file as string
-    const fullPath = path.join(projectsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+  // fetch data for all projects
+  const allProjectsData = await Promise.all(
+    projectIds.map(
+      async ({ params: { id } }) => await getMarkdownData(id, "projects")
+    )
+  );
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-
-    // Combine the data with the id
-    return {
-      id,
-      ...matterResult.data,
-    };
-  });
   // Sort posts by specified order (ascending)
   const sortedProjectsData = allProjectsData.sort(
     ({ order: a }, { order: b }) => {
@@ -77,10 +70,12 @@ export function getSortedProjectsData() {
     }
   );
 
-  return categorizeSortedProjects(sortedProjectsData);
+  const categorizedProjectsData = categorizeProjectData(sortedProjectsData);
+
+  return categorizedProjectsData;
 }
 
-function categorizeSortedProjects(sortedProjectsData) {
+function categorizeProjectData(sortedProjectsData) {
   // categorize data into object
   // {
   // catgory: [{},{}, ... ]

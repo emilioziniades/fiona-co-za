@@ -4,7 +4,7 @@ import Layout from "../../components/layout";
 import { getSortedProjectsData } from "../../lib/markdown";
 
 export async function getStaticProps() {
-  const allProjectsData = getSortedProjectsData();
+  const allProjectsData = await getSortedProjectsData();
   return {
     props: {
       allProjectsData,
@@ -32,6 +32,8 @@ export default function ProjectsPage({ allProjectsData }) {
                       height={imgSize}
                       width={imgSize}
                       alt={project.title}
+                      placeholder="blur"
+                      blurDataURL={project.imagePlaceholder}
                     />
                     <div className="transition-all hover:bg-stone-600 h-full w-full opacity-50 absolute top-0 left-0" />
                   </div>

@@ -1,4 +1,3 @@
-import path from "path";
 import Image from "next/image";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
@@ -6,8 +5,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { getMarkdownData, getAllProjectsIds } from "../../lib/markdown";
 
 export async function getStaticProps({ params }) {
-  const projectPath = path.join("projects", params.id);
-  const projectData = await getMarkdownData(projectPath);
+  const projectData = await getMarkdownData(params.id, "projects");
   return {
     props: {
       projectData,
@@ -42,6 +40,8 @@ export default function Project({ projectData }) {
             height={imgSize}
             width={imgSize}
             alt={projectData.title + " image"}
+            placeholder="blur"
+            blurDataURL={projectData.imagePlaceholder}
           />
         </div>
         <div className="basis-1/3 md:p-10 p-5">

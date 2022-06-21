@@ -3,8 +3,8 @@ import { getMarkdownData } from "../lib/markdown";
 import { ContactDetails, buttonClasses } from "../components/banner";
 
 export async function getStaticProps() {
-  const infoData = await getMarkdownData("/pages/index");
-  const mdData = await getMarkdownData("/pages/contact");
+  const infoData = await getMarkdownData("index", "pages");
+  const mdData = await getMarkdownData("contact", "pages");
   const data = { ...infoData, ...mdData };
   return {
     props: { data },
