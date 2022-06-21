@@ -6,6 +6,7 @@ import {
   IoChevronForwardOutline,
 } from "react-icons/io5";
 
+import Layout from "../../components/layout";
 import {
   getMarkdownData,
   getAllProjectsIds,
@@ -44,41 +45,43 @@ const imgSize = 800;
 
 export default function Project({ projectData, prevProjectId, nextProjectId }) {
   return (
-    <div className="bg-[#d2cac6] min-h-scren h-screen w-screen">
-      <div className="flex justify-end">
-        <Link href="/projects">
-          <a className="text-6xl">
-            <IoCloseOutline />
-          </a>
-        </Link>
-      </div>
-      <div className="flex md:flex-row flex-col max-w-6xl mx-auto">
-        <div
-          className={`text-6xl self-center ${
-            prevProjectId == null ? "pointer-events-none opacity-0" : ""
-          }`}
-        >
-          <Link href={`/projects/${prevProjectId}`}>
-            <a>
-              <IoChevronBackOutline />
+    <Layout noHeader>
+      <div className="bg-[#d2cac6] min-h-scren h-screen w-screen">
+        <div className="flex justify-end pr-10 pt-5">
+          <Link href="/projects">
+            <a className="text-6xl">
+              <IoCloseOutline />
             </a>
           </Link>
         </div>
-        <ProjectImage projectData={projectData} />
-        <ProjectCard projectData={projectData} />
-        <div
-          className={`text-6xl self-center ${
-            nextProjectId == null ? "pointer-events-none opacity-0" : ""
-          }`}
-        >
-          <Link href={`/projects/${nextProjectId}`}>
-            <a>
-              <IoChevronForwardOutline />
-            </a>
-          </Link>
+        <div className="flex md:flex-row flex-col max-w-6xl mx-auto">
+          <div
+            className={`text-6xl self-center ${
+              prevProjectId == null ? "pointer-events-none opacity-0" : ""
+            }`}
+          >
+            <Link href={`/projects/${prevProjectId}`}>
+              <a>
+                <IoChevronBackOutline />
+              </a>
+            </Link>
+          </div>
+          <ProjectImage projectData={projectData} />
+          <ProjectCard projectData={projectData} />
+          <div
+            className={`text-6xl self-center ${
+              nextProjectId == null ? "pointer-events-none opacity-0" : ""
+            }`}
+          >
+            <Link href={`/projects/${nextProjectId}`}>
+              <a>
+                <IoChevronForwardOutline />
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

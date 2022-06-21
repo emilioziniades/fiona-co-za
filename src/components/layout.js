@@ -13,14 +13,24 @@ const linkClass =
   "ml-2 p-1 my-1 hover:bg-zinc-400 hover:text-white transition-all text-center";
 const activeLinkClass = linkClass + " bg-zinc-500 text-white";
 
-export default function Layout({ children, background }) {
+export default function Layout({ children, background, noHeader }) {
   return (
     <>
-      <Header />
-      <div className={`p-5 min-h-screen ${background}`}>
-        <div className="md:pt-10 pt-2" />
-        <div className="max-w-4xl mx-auto">{children}</div>
-      </div>
+      <Head>
+        <title>{siteTitle}</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {noHeader ? (
+        children
+      ) : (
+        <>
+          <Header />
+          <div className={`p-5 min-h-screen ${background}`}>
+            <div className="md:pt-10 pt-2" />
+            <div className="max-w-4xl mx-auto">{children}</div>
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -28,11 +38,7 @@ export default function Layout({ children, background }) {
 function Header() {
   const router = useRouter();
   return (
-    <div className="bg-neutral-800">
-      <Head>
-        <title>{siteTitle}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="bg-neutral-800 transition">
       <div className="max-w-4xl mx-auto">
         <header className="md:py-8 py-4 px-6">
           <Link href="/">
