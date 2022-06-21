@@ -9,7 +9,8 @@ const navItems = [
   { name: "cv", path: "/cv" },
   { name: "contact", path: "/contact" },
 ];
-const linkClass = "ml-2 p-1 hover:bg-zinc-400 hover:text-white transition-all";
+const linkClass =
+  "ml-2 p-1 my-1 hover:bg-zinc-400 hover:text-white transition-all text-center";
 const activeLinkClass = linkClass + " bg-zinc-500 text-white";
 
 export default function Layout({ children, background }) {
@@ -17,7 +18,7 @@ export default function Layout({ children, background }) {
     <>
       <Header />
       <div className={`p-5 min-h-screen ${background}`}>
-        <div className="pt-10" />
+        <div className="md:pt-10 pt-2" />
         <div className="max-w-4xl mx-auto">{children}</div>
       </div>
     </>
@@ -33,15 +34,15 @@ function Header() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="max-w-4xl mx-auto">
-        <header className="py-8 px-6">
+        <header className="md:py-8 py-4 px-6">
           <Link href="/">
             <a>
-              <h1 className="uppercase text-6xl font-light text-right text-white tracking-wide">
+              <h1 className="uppercase md:text-6xl text-3xl font-light text-right text-white tracking-wide">
                 {siteTitle}
               </h1>
             </a>
           </Link>
-          <ul className="flex justify-end text-stone-400 mt-5 text-2xl">
+          <ul className="flex flex-col md:flex-row justify-end text-stone-400 md:mt-5 md:text-2xl text-lg">
             {navItems.map(({ name, path }) => (
               <li
                 key={name}

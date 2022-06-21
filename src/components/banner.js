@@ -27,8 +27,8 @@ export default function Banner({
   const columnOrder = contactFirst ? "flex-col-reverse" : "flex-col";
   return (
     <div className={`rounded p-4 ${background} ${textColour}`}>
-      <div className="flex ">
-        <div className="p-4 basis-2/5">
+      <div className="flex md:flex-row flex-col">
+        <div className="p-4 basis-2/5 md:h-2">
           <Image
             src={data.image}
             alt="Fiona Peake headshot"
@@ -40,7 +40,7 @@ export default function Banner({
           <div className="">
             <h1 className="text-5xl uppercase font-bold p-4">{data.heading}</h1>
           </div>
-          <div className="flex">
+          <div className="flex md:flex-row flex-col">
             {!noBlurb && (
               <div className="text-lg whitespace-pre-wrap basis-1/2 p-4">
                 {data.blurb}

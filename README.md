@@ -8,5 +8,6 @@ TODO
 
 - [ ] lazy load images with a blur
 - [ ] transition between project and projects pages
-- [ ] netlify cms
-- [ ] sort projects by category and add category headings
+- [x] netlify cms
+- [x] sort projects by category and add category headings
+- [ ] paginate individual project pages

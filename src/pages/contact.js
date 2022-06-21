@@ -14,15 +14,17 @@ export async function getStaticProps() {
 export default function ContactPage({ data }) {
   return (
     <Layout>
-      <div className="mx-auto max-w-4xl p-4 text-gray-700">
-        <h1 className="uppercase font-bold text-5xl">{data.heading}</h1>
-        <div className="py-6"></div>
-        <div className="flex">
+      <div className="mx-auto max-w-4xl md:p-4 p-2 text-gray-700">
+        <h1 className="uppercase font-bold md:text-5xl text-3xl">
+          {data.heading}
+        </h1>
+        <div className="md:py-6 py-2"></div>
+        <div className="flex md:flex-row flex-col">
           <div className="basis-1/3">
             <ContactDetails contact={data.contact} />
           </div>
           <div className="basis-2/3">
-            <div className="pb-4">{data.contact_message}</div>
+            <div className="pb-4 mt-5">{data.contact_message}</div>
             <form
               name="contact"
               method="POST"

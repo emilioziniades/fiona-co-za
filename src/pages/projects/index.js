@@ -19,10 +19,10 @@ export default function ProjectsPage({ allProjectsData }) {
     <Layout>
       {Object.keys(allProjectsData).map((category) => (
         <div key={category}>
-          <h1 className="text-white bg-stone-800 text-5xl uppercase p-5 mx-1 my-3">
+          <h1 className="text-white bg-stone-800 md:text-5xl text-2xl font-bold uppercase md:p-5 p-2 mx-2 my-3">
             {category}
           </h1>
-          <div className="grid grid-cols-3 justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center">
             {allProjectsData[category].map((project) => (
               <Link key={project.id} href={`/projects/${project.id}`}>
                 <a>
