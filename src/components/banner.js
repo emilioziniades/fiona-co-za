@@ -36,6 +36,7 @@ export default function Banner({
             height={imgSize}
             placeholder="blur"
             blurDataURL={data.imagePlaceholder}
+            priority
           />
         </div>
         <div className="basis-3/5">

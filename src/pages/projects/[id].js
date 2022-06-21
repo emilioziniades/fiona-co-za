@@ -42,6 +42,7 @@ export default function Project({ projectData }) {
             alt={projectData.title + " image"}
             placeholder="blur"
             blurDataURL={projectData.imagePlaceholder}
+            priority
           />
         </div>
         <div className="basis-1/3 md:p-10 p-5">

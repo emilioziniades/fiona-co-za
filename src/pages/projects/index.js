@@ -34,6 +34,7 @@ export default function ProjectsPage({ allProjectsData }) {
                       alt={project.title}
                       placeholder="blur"
                       blurDataURL={project.imagePlaceholder}
+                      priority
                     />
                     <div className="transition-all hover:bg-stone-600 h-full w-full opacity-50 absolute top-0 left-0" />
                   </div>
