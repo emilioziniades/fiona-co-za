@@ -108,13 +108,6 @@ export async function getSortedProjectsData(): Promise<Array<Data>> {
 
 export async function getCategorizedProjectsData(): Promise<CategorizedData> {
   const sortedProjectsData = await getSortedProjectsData();
-  /* 
-  categorize data into object:
-    {
-      catgory: [{},{}, ... ],
-      catgory: [{},{}, ... ]
-    } 
-  */
   let categorized: CategorizedData = {};
   for (let project of sortedProjectsData) {
     if (project.category in categorized) {
