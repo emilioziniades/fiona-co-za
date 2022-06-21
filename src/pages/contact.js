@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import { getMarkdownData } from "../utils/markdown";
+import { getMarkdownData } from "../lib/markdown";
 import { ContactDetails, buttonClasses } from "../components/banner";
 
 export async function getStaticProps() {

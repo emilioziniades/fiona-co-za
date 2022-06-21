@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "../../components/layout";
-import { getSortedProjectsData } from "../../utils/markdown";
+import { getSortedProjectsData } from "../../lib/markdown";
 
 export async function getStaticProps() {
   const allProjectsData = getSortedProjectsData();

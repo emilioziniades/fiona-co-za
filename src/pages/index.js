@@ -2,7 +2,7 @@ import Script from "next/script";
 import Layout from "../components/layout";
 import Banner from "../components/banner";
 
-import { getMarkdownData } from "../utils/markdown";
+import { getMarkdownData } from "../lib/markdown";
 
 const actionButtons = [
   { name: "my cv", path: "/cv" },

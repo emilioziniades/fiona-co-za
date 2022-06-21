@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
 
-import { getMarkdownData, getAllProjectsIds } from "../../utils/markdown";
+import { getMarkdownData, getAllProjectsIds } from "../../lib/markdown";
 
 export async function getStaticProps({ params }) {
   const projectPath = path.join("projects", params.id);
