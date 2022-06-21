@@ -61,6 +61,7 @@ If you have any fantastic ideas, feel free to open a pull request.
 ## TODO
 
 - [ ] smooth page transition between project and projects pages
+- [ ] \(maybe\) move individual project pages into a modal on the project page
 - [x] paginate individual project pages
 - [x] lazy load images with a blur
 - [x] add two boxes to bottom of CV page
