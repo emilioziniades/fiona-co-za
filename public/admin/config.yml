@@ -61,6 +61,7 @@ collections:
           - label: Contact Details
             name: contact
             widget: list
+            collapsed: false
             allow_add: true
             hint: Also appears on CV page.
             fields:
@@ -81,6 +82,7 @@ collections:
               - label: Skills
                 name: skills
                 widget: list
+                collapsed: false
                 allow_add: true
                 fields:
                   - label: Skill Item
@@ -93,6 +95,24 @@ collections:
           - label: Heading
             name: heading
             widget: string
+          - label: Personal Skills
+            name: personal_skills
+            widget: list
+            collapsed: false
+            allow_add: true
+            fields:
+              - label: Personal Skill
+                name: personal_skill
+                widget: string
+          - label: Technical Skills
+            name: technical_skills
+            widget: list
+            collapsed: false
+            allow_add: true
+            fields:
+              - label: Technical Skill
+                name: technical_skill
+                widget: string
           - label: CV
             name: body
             widget: markdown

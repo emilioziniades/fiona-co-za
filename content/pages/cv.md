@@ -1,5 +1,11 @@
 ---
 heading: CV
+personal_skills:
+  - Confident communicator and presenter
+  - Strong writing, editing, proofreading, layout and design skills
+technical_skills:
+  - Microsoft Word
+  - Microsof Excel
 ---
 
 # Professional Info

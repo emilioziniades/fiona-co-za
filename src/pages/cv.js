@@ -34,6 +34,32 @@ export default function CVPage({ data }) {
       <article className={proseStyle}>
         <div dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
       </article>
+      <div className="pt-10 " />
+      <div className="flex md:flex-row flex-col text-gray-800">
+        <SkillsList
+          skills={data.personal_skills}
+          title="Personal Skills"
+          bg="bg-amber-300"
+        />
+        <SkillsList
+          skills={data.technical_skills}
+          title="Technical Skills"
+          bg="bg-emerald-300"
+        />
+      </div>
     </Layout>
+  );
+}
+
+function SkillsList({ skills, title, bg }) {
+  return (
+    <div className={`basis-1/2 md:p-5 p-2 m-1 ${bg}`}>
+      <h2 className="text-2xl py-4 uppercase">{title}</h2>
+      <ul className="list-disc list-inside">
+        {skills.map((skill) => (
+          <li>{skill}</li>
+        ))}
+      </ul>
+    </div>
   );
 }

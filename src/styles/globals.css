@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* for debugging */
 * {
   /* border: 1px solid purple; */
 }
