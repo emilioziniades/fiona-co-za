@@ -8,13 +8,32 @@ import { getPlaiceholder } from "plaiceholder";
 const contentDirectory = path.join(process.cwd(), "content");
 const projectsDirectory = path.join(contentDirectory, "projects");
 
-type MarkdownData = object;
-interface ProjectData {
+interface MarkdownData {
   id: string;
-  order: number;
-  image: string;
-  category: string;
+  contentHtml: string;
+  heading?: string;
+  image?: string;
+  blurb?: string;
+  contact?: { name: string; number: string }[];
+  contact_message?: string;
+  offering?: { intro: string; skills: string[] };
+  personal_skills?: string[];
+  technical_skills?: string[];
+  category?: string;
 }
+interface ProjectData extends MarkdownData {
+  title: string;
+  image: string;
+  imagePlaceholder: string;
+  category: string;
+  order: number;
+  link: string;
+  link_name?: string;
+}
+type Data = MarkdownData | ProjectData;
+type CategorizedData = {
+  [key: string]: Data[];
+};
 type IdProp = {
   params: {
     id: string;
@@ -24,7 +43,7 @@ type IdProp = {
 export async function getMarkdownData(
   id: string,
   filePath: string
-): Promise<MarkdownData> {
+): Promise<Data> {
   // read file contents
   const fullPath = path.join(contentDirectory, filePath, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -38,7 +57,7 @@ export async function getMarkdownData(
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  const data = { id, contentHtml, ...matterResult.data };
+  const data: Data = { id, contentHtml, ...matterResult.data };
 
   if (!("image" in matterResult.data)) {
     return data;
@@ -62,14 +81,14 @@ export function getAllProjectsIds(): IdProp[] {
   });
 }
 
-export async function getSortedProjectsData(): Promise<Array<ProjectData>> {
+export async function getSortedProjectsData(): Promise<Array<Data>> {
   // Get file names under /projects
   const projectIds = getAllProjectsIds();
 
   // fetch data for all projects
   const allProjectsData = await Promise.all(
     projectIds.map(
-      async (props: IdProp): Promise<ProjectData> =>
+      async (props: IdProp): Promise<Data> =>
         await getMarkdownData(props.params.id, "projects")
     )
   );
@@ -87,7 +106,7 @@ export async function getSortedProjectsData(): Promise<Array<ProjectData>> {
   );
 }
 
-export async function getCategorizedProjectsData() {
+export async function getCategorizedProjectsData(): Promise<CategorizedData> {
   const sortedProjectsData = await getSortedProjectsData();
   /* 
   categorize data into object:
@@ -96,7 +115,7 @@ export async function getCategorizedProjectsData() {
       catgory: [{},{}, ... ]
     } 
   */
-  let categorized = {};
+  let categorized: CategorizedData = {};
   for (let project of sortedProjectsData) {
     if (project.category in categorized) {
       categorized[project.category].push(project);

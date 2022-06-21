@@ -21,7 +21,6 @@ export async function getStaticProps({ params }) {
   const prevProjectIndex = projectIndex > 0 ? projectIndex - 1 : null;
   const nextProjectIndex =
     projectIndex < sortedData.length - 1 ? projectIndex + 1 : null;
-  console.log(prevProjectIndex, projectIndex, nextProjectIndex);
   return {
     props: {
       projectData,
