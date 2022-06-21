@@ -57,7 +57,7 @@ function SkillsList({ skills, title, bg }) {
       <h2 className="text-2xl py-4 uppercase">{title}</h2>
       <ul className="list-disc list-inside">
         {skills.map((skill) => (
-          <li>{skill}</li>
+          <li key={skill}>{skill}</li>
         ))}
       </ul>
     </div>

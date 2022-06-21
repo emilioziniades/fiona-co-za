@@ -17,7 +17,6 @@ export async function getStaticProps() {
   };
 }
 export default function HomePage({ data }) {
-  console.log(data);
   return (
     <Layout background="bg-stone-700">
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
