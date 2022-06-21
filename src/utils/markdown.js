@@ -34,11 +34,6 @@ export function getAllProjectsIds() {
   //       id: 'ssg-ssr'
   //     }
   //   },
-  //   {
-  //     params: {
-  //       id: 'pre-rendering'
-  //     }
-  //   }
   // ]
   return fileNames.map((fileName) => {
     return {
@@ -82,9 +77,13 @@ export function getSortedProjectsData() {
     }
   );
 
+  return categorizeSortedProjects(sortedProjectsData);
+}
+
+function categorizeSortedProjects(sortedProjectsData) {
   // categorize data into object
   // {
-  // design: [{},{}, ... ]
+  // catgory: [{},{}, ... ]
   // }
   let categorized = {};
   for (let project of sortedProjectsData) {
