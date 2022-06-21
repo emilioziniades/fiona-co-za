@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "../../components/layout";
-import { getSortedProjectsData } from "../../lib/markdown";
+import { getCategorizedProjectsData } from "../../lib/markdown";
 
 export async function getStaticProps() {
-  const allProjectsData = await getSortedProjectsData();
+  const allProjectsData = await getCategorizedProjectsData();
   return {
     props: {
       allProjectsData,
@@ -15,6 +15,7 @@ export async function getStaticProps() {
 const imgSize = 500; // big enough to fill container
 
 export default function ProjectsPage({ allProjectsData }) {
+  <return className=" Layout "></return>;
   return (
     <Layout>
       {Object.keys(allProjectsData).map((category) => (

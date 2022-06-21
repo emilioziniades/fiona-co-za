@@ -8,7 +8,23 @@ import { getPlaiceholder } from "plaiceholder";
 const contentDirectory = path.join(process.cwd(), "content");
 const projectsDirectory = path.join(contentDirectory, "projects");
 
-export async function getMarkdownData(id, filePath) {
+type MarkdownData = object;
+interface ProjectData {
+  id: string;
+  order: number;
+  image: string;
+  category: string;
+}
+type IdProp = {
+  params: {
+    id: string;
+  };
+};
+
+export async function getMarkdownData(
+  id: string,
+  filePath: string
+): Promise<MarkdownData> {
   // read file contents
   const fullPath = path.join(contentDirectory, filePath, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -35,9 +51,9 @@ export async function getMarkdownData(id, filePath) {
   return { ...data, imagePlaceholder };
 }
 
-export function getAllProjectsIds() {
+export function getAllProjectsIds(): IdProp[] {
   const fileNames = fs.readdirSync(projectsDirectory);
-  return fileNames.map((fileName) => {
+  return fileNames.map((fileName: string): IdProp => {
     return {
       params: {
         id: fileName.replace(/\.md$/, ""),
@@ -46,40 +62,40 @@ export function getAllProjectsIds() {
   });
 }
 
-export async function getSortedProjectsData() {
+export async function getSortedProjectsData(): Promise<Array<ProjectData>> {
   // Get file names under /projects
   const projectIds = getAllProjectsIds();
 
   // fetch data for all projects
   const allProjectsData = await Promise.all(
     projectIds.map(
-      async ({ params: { id } }) => await getMarkdownData(id, "projects")
+      async (props: IdProp): Promise<ProjectData> =>
+        await getMarkdownData(props.params.id, "projects")
     )
   );
 
-  // Sort posts by specified order (ascending)
-  const sortedProjectsData = allProjectsData.sort(
-    ({ order: a }, { order: b }) => {
-      if (a < b) {
-        return -1;
-      } else if (a > b) {
-        return 1;
+  // Sort posts by category, then order key (ascending)
+  return allProjectsData.sort(
+    (proj1: ProjectData, proj2: ProjectData): number => {
+      const categoryComparison = proj1.category.localeCompare(proj2.category);
+      if (categoryComparison != 0) {
+        return categoryComparison;
       } else {
-        return 0;
+        return proj1.order - proj2.order;
       }
     }
   );
-
-  const categorizedProjectsData = categorizeProjectData(sortedProjectsData);
-
-  return categorizedProjectsData;
 }
 
-function categorizeProjectData(sortedProjectsData) {
-  // categorize data into object
-  // {
-  // catgory: [{},{}, ... ]
-  // }
+export async function getCategorizedProjectsData() {
+  const sortedProjectsData = await getSortedProjectsData();
+  /* 
+  categorize data into object:
+    {
+      catgory: [{},{}, ... ],
+      catgory: [{},{}, ... ]
+    } 
+  */
   let categorized = {};
   for (let project of sortedProjectsData) {
     if (project.category in categorized) {
